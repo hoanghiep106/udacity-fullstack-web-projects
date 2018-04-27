@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="text-right">
+    <a href="/blog" class="btn btn-dark mb-3">Back to blog page</a>
+  </div>
+  <h2>Edit post</h2>
+  <form method="put" class="new-post">
+    <label>Subject</label>
+    <input type="text" name="subject" value="{{subject}}" class="form-control">
+    <label>Content</label>
+    <textarea name="content" class="form-control">{{content}}</textarea>
+    <div class="error">{{error}}</div>
+    <input type="submit" class="btn btn-dark mt-3">
+  </form>
+{% endblock %}

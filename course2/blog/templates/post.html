@@ -1,0 +1,17 @@
+<div class="post">
+  <div class="post--title">
+    <h3>{{post.subject}}</h3>
+  </div>
+  <div class="post--date">
+    {{post.created.strftime("%b %d, %Y")}}
+  </div>
+  <div class="post--content mb-4">
+    {{post.html | safe}}
+  </div>
+  <a href="/blog/{{post.key().id()}}/edit">
+    <b>Edit</b>
+  </a>
+  <a href="/blog/{{post.key().id()}}/delete">
+    <b>Delete</b>
+  </a>
+</div>

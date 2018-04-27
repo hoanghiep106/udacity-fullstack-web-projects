@@ -1,0 +1,13 @@
+<div class="post">
+  <div class="post--title pull-left">
+    <a href="/blog/{{post.key().id()}}">
+      <h3>{{post.subject}}</h3>
+    </a>
+  </div>
+  <div class="post--date pull-right">
+    {{post.created.strftime("%b %d, %Y")}}
+  </div>
+  <div class="post--content">
+    {{post.content | safe}}
+  </div>
+</div>

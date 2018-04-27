@@ -1,0 +1,49 @@
+body {
+  color: #414141;
+  font-size: 0.9rem;
+}
+
+a {
+  color: #414141;
+}
+
+a:hover {
+  color: #313131;
+}
+
+.post {
+  padding: 15px 30px;
+  background-color: #eee;
+}
+
+.post--title {
+  float: left;
+}
+
+.post--date {
+  float: right;
+}
+
+.post--content {
+  clear: both;
+}
+
+.error {
+  color: red;
+}
+
+label,
+input,
+textarea {
+  display: block;
+}
+
+.container {
+  position: relative;
+}
+
+.log-out-btn {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+}
