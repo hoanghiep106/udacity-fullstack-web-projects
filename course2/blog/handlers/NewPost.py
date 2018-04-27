@@ -7,11 +7,12 @@ class NewPost(BaseHandler):
     self.render('new-post.html')
   
   def post(self):
+    user = self.get_user()
     subject = self.request.get('subject')
     content = self.request.get('content')
 
     if subject and content:
-      post = Post(parent=blog_key(), subject=subject, content=content)
+      post = Post(parent=blog_key(), subject=subject, content=content, username=user.name)
       post.put()
       self.redirect('/blog/%s' % str(post.key().id()))
     else:

@@ -36,15 +36,12 @@ class Register(BaseHandler):
     if have_error:
       self.render('register.html', **params)
     else:
-      self.done()
-
-  def done(self):
-    user = User.find_by_name(self.username)
-    if user:
-      msg = 'That user already exists.'
-      self.render('register.html', error_username = msg)
-    else:
-      user = User.register(self.username, self.password, self.email)
-      user.put()
-      self.set_secure_cookie('user_id', str(user.key().id()))
-      self.redirect('/blog')
+      user = User.find_by_name(self.username)
+      if user:
+        msg = 'That user already exists.'
+        self.render('register.html', error_username = msg)
+      else:
+        user = User.register(self.username, self.password, self.email)
+        user.put()
+        self.set_secure_cookie('user_id', str(user.key().id()))
+        self.redirect('/blog')

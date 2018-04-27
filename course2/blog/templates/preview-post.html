@@ -5,7 +5,8 @@
     </a>
   </div>
   <div class="post--date pull-right">
-    {{post.created.strftime("%b %d, %Y")}}
+    {{post.created.strftime("%b %d, %Y")}} <br />
+    <i>Posted by {{post.username}}</i>
   </div>
   <div class="post--content">
     {{post.content | safe}}

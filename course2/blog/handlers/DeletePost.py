@@ -9,6 +9,11 @@ class DeletePost(BaseHandler):
     post = db.get(key)
     if not post:
       return self.error(404)
-    post.delete()
-    msg = 'Delete successfully'
-    self.render('success.html', message=msg)
+    user = self.get_user()
+    if post.username != user.name:
+      msg = "Cannot delete other users' posts"
+      self.render('notification.html', message=msg)
+    else:
+      post.delete()
+      msg = 'Delete successfully'
+      self.render('notification.html', message=msg)
