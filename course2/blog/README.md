@@ -13,7 +13,7 @@ https://www.python.org/downloads/
 
 https://cloud.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python
 
-3. Install dependencies
+3. Get into blog directory and install dependencies
 
 ```
 pip install -t lib/ -r requirements.txt
