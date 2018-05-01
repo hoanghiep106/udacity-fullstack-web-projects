@@ -18,8 +18,7 @@ class User(db.Model):
   
     @classmethod
     def find_by_username(cls, username):
-        user = User.all().filter('username =', username).get()
-        return user
+        return User.all().filter('username =', username).get()
   
     @classmethod
     def register(cls, username, password, email=None):

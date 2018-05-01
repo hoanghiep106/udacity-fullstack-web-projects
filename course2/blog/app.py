@@ -1,14 +1,14 @@
 from webapp2 import WSGIApplication
 
-from handlers.HomePage import HomePage
 from handlers.BlogPage import BlogPage
-from handlers.PostPage import PostPage
-from handlers.NewPost import NewPost
-from handlers.EditPost import EditPost
-from handlers.DeletePost import DeletePost
-from handlers.Register import Register
-from handlers.Login import Login
-from handlers.Logout import Logout
+from handlers.HomePage import HomePage
+from handlers.post.DeletePost import DeletePost
+from handlers.post.EditPost import EditPost
+from handlers.post.NewPost import NewPost
+from handlers.post.PostPage import PostPage
+from handlers.user.Login import Login
+from handlers.user.Logout import Logout
+from handlers.user.Register import Register
 
 app = WSGIApplication([('/', HomePage),
                       ('/blog/?', BlogPage),

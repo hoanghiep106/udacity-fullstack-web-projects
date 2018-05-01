@@ -1,4 +1,4 @@
-from Base import BaseHandler
+from handlers.Base import BaseHandler
 
 from utils.validate import valid_email, valid_password, valid_username
 

@@ -8,12 +8,14 @@
     <div class="post--content mb-4">
         {{post.content | safe}}
     </div>
+    {% if post.username == current_user.username %}
     <div class="text-right">
         <a href="/blog/{{post.key().id()}}/edit" class="d-inline">
             <button class="btn btn-dark btn-sm mr-2">Edit</button>
         </a>
-        <form method="post" action="/blog/{{post.key().id()}}/delete" class="d-inline">
-            <input class="btn btn-dark btn-sm" type="submit" value="Delete" />
-        </form>
+        <a href="/blog/{{post.key().id()}}/delete" class="d-inline">
+            <button class="btn btn-dark btn-sm mr-2">Delete</button>
+        </a>
     </div>
+    {% endif %}
 </div>

@@ -1,4 +1,4 @@
-from Base import BaseHandler
+from handlers.Base import BaseHandler
 from google.appengine.ext import db
 
 
@@ -12,4 +12,4 @@ class PostPage(BaseHandler):
         post = db.get(key)
         if not post:
             return self.error(404)
-        self.render('post-page.html', post=post)
+        self.render('post-page.html', post=post, current_user=self.get_user())

@@ -13,27 +13,19 @@ https://www.python.org/downloads/
 
 https://cloud.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python
 
-3. Create a virtual enviroment
-
-In the course2 directory run
+3. Install dependencies
 
 ```
-virtualenv -p /home/username/opt/python-2.7.7/bin/python blog
+pip install -t lib/ -r requirements.txt
 ```
 
-4. Install dependencies
-
-```
-pip install -r requirements.txt
-```
-
-5. Run app in development env
+4. Run app in development env
 
 ```
 dev_appserver.py
 ```
 
-6. Deploy
+5. Deploy
 
 ```
 gcloud app deploy

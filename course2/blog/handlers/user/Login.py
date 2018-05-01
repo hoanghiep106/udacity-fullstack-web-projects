@@ -1,4 +1,4 @@
-from Base import BaseHandler
+from handlers.Base import BaseHandler
 from models.user import User
 
 

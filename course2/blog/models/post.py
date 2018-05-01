@@ -14,9 +14,9 @@ class Post(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
     last_modified = db.DateTimeProperty(auto_now=True)
   
-    def render(self):
+    def render(self, current_user):
         self.content = self.content.replace('\n', '<br>')
-        return render_str('post.html', post=self)
+        return render_str('post.html', post=self, current_user=current_user)
   
     def render_preview(self):
         self.content = self.content[:75] + (self.content[75:] and '..')

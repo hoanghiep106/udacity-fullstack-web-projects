@@ -4,5 +4,5 @@
   <div class="text-right">
     <a href="/blog" class="btn btn-dark mb-3">Back to blog page</a>
   </div>
-  {{post.render() | safe}}
+  {{post.render(current_user) | safe}}
 {% endblock %}
