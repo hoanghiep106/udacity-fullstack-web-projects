@@ -1,17 +1,19 @@
 <div class="post">
-  <div class="post--title">
-    <h3>{{post.subject}}</h3>
-  </div>
-  <div class="post--date">
-    {{post.created.strftime("%b %d, %Y")}}
-  </div>
-  <div class="post--content mb-4">
-    {{post.html | safe}}
-  </div>
-  <a href="/blog/{{post.key().id()}}/edit">
-    <b>Edit</b>
-  </a>
-  <a href="/blog/{{post.key().id()}}/delete">
-    <b>Delete</b>
-  </a>
+    <div class="post--title">
+        <h3>{{post.subject}}</h3>
+    </div>
+    <div class="post--date">
+        {{post.created.strftime("%b %d, %Y")}}
+    </div>
+    <div class="post--content mb-4">
+        {{post.content | safe}}
+    </div>
+    <div class="text-right">
+        <a href="/blog/{{post.key().id()}}/edit" class="d-inline">
+            <button class="btn btn-dark btn-sm mr-2">Edit</button>
+        </a>
+        <form method="post" action="/blog/{{post.key().id()}}/delete" class="d-inline">
+            <input class="btn btn-dark btn-sm" type="submit" value="Delete" />
+        </form>
+    </div>
 </div>

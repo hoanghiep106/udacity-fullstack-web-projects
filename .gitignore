@@ -1,1 +1,8 @@
 *.pyc
+.DS_Store
+bin/
+lib/
+.idea/
+.vscode/
+include/
+**/.Python

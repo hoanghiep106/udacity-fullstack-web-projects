@@ -11,12 +11,12 @@ from handlers.Login import Login
 from handlers.Logout import Logout
 
 app = WSGIApplication([('/', HomePage),
-                              ('/blog/?', BlogPage),
-                              ('/blog/([0-9]+)', PostPage),
-                              ('/blog/([0-9]+)/edit', EditPost),
-                              ('/blog/([0-9]+)/delete', DeletePost),
-                              ('/blog/new', NewPost),
-                              ('/register', Register),
-                              ('/login', Login),
-                              ('/logout', Logout),],
-                              debug=True)
+                      ('/blog/?', BlogPage),
+                      ('/blog/([0-9]+)', PostPage),
+                      ('/blog/([0-9]+)/edit', EditPost),
+                      ('/blog/([0-9]+)/delete', DeletePost),
+                      ('/blog/new', NewPost),
+                      ('/register', Register),
+                      ('/login', Login),
+                      ('/logout', Logout), ],
+                      debug=True)
