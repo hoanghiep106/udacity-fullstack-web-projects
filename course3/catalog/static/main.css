@@ -1,0 +1,47 @@
+body {
+    color: #414141;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+a, a.btn-link {
+    color: #414141;
+}
+
+a:hover, a.btn-link:hover {
+    color: #313131;
+}
+
+.navbar-brand a:hover {
+    text-decoration: none;
+}
+
+.header {
+    background-color: #eee;
+}
+
+.flash {
+    background-color: #ddd;
+    padding-left: 2.5rem;
+}
+
+.flash ul {
+    list-style: none;
+    padding: 1rem 0 1rem .5rem;
+    margin-top: 0;
+}
+
+.catalog {
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    height: 180px;
+}
+
+.login {
+    width: 600px;
+    margin: 2.5rem auto;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    padding-bottom: 2rem;
+}

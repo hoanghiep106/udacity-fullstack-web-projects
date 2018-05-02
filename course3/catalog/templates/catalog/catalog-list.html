@@ -1,0 +1,34 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+    {% include "common/header.html" %}
+    {% include "common/flash.html" %}
+    <div class="container mt-3">
+        <div class="text-right">
+            <a href="/catalogs/new" class="btn btn-dark mb-3">New catalog</a>
+        </div>
+        <div class="row">
+            {% for catalog in catalogs %}
+                <div class="col-md-4 mb-2">
+                    <div class="catalog p-3">
+                        <a href="/catalogs/{{catalog.id}}/items">
+                            <h5>{{catalog.name}}</h5>
+                        </a>
+                        <div>{{catalog.description}}</div>
+                        <br><br>
+                        {% if 'user_id' in session and session['user_id'] == catalog.user_id %}
+                        <div class="text-right">
+                            <a href="/catalogs/{{catalog.id}}/edit" class="d-inline">
+                                <button class="btn btn-dark btn-sm mr-2">Edit</button>
+                            </a>
+                            <a href="/catalogs/{{catalog.id}}/delete" class="d-inline">
+                                <button class="btn btn-dark btn-sm mr-2">Delete</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

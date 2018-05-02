@@ -1,0 +1,17 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+    {% include "common/header.html" %}
+    <div class="container mt-3">
+        <div>Are you sure you want to delete this catalog?</div>
+        <div>This means that you will delete all the items belong to this catalog</div>
+        <div class="text-right">
+            <a href="/catalogs/{{catalog.id}}" class="d-inline">
+                <button class="btn btn-dark btn-sm mr-2">Cancel</button>
+            </a>
+            <form method="post" action="/catalogs/{{catalog.id}}/delete" class="d-inline">
+                <input class="btn btn-dark btn-sm" type="submit" value="Delete" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

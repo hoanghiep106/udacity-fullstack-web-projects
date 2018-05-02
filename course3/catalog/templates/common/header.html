@@ -1,0 +1,16 @@
+<div class="row top-menu">
+	<div class="container-fluid header py-3">
+		<div class="float-left pl-5 navbar-brand">
+			<a href="/catalogs"><h4>My catalog</h4></a>
+		</div>
+		{% if 'user_id' in session %}
+		<div class="float-right pr-5 mt-1">
+			<a href="/gdisconnect">Logout</a>
+		</div>
+		{% else %}
+		<div class="float-right pr-5 mt-1">
+			<a href="/login">Login</a>
+		</div>
+		{% endif %}
+	</div>
+</div>

@@ -1,0 +1,19 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+    {% include "common/header.html" %}
+    <div class="container mt-3">
+        <div class="text-right">
+            <a href="/catalogs/{{catalog.id}}/items" class="btn btn-dark mb-3">Back to item page</a>
+        </div>
+        <h2>{{ title }}</h2>
+        <form method="post">
+            <label>Name</label>
+            <input type="text" name="name" value="{{name}}" class="form-control">
+            <label>Description</label>
+            <input name="description" class="form-control" value="{{description}}"/>
+            <div class="error">{{error}}</div>
+            <input type="submit" class="btn btn-dark mt-3">
+        </form>
+    </div>
+{% endblock %}
