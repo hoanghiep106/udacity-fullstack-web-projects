@@ -1,10 +1,10 @@
 import hmac
 
-secret = 'hiep'
+from config import SECRET
 
 
 def make_secure_val(val):
-    return '%s|%s' % (val, hmac.new(secret, val).hexdigest())
+    return '%s|%s' % (val, hmac.new(SECRET, val).hexdigest())
 
 
 def check_secure_val(secure_val):
