@@ -18,14 +18,6 @@ class Catalog(Base):
         self.description = description
         self.user_id = user_id
 
-    @property
-    def serialize(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description
-        }
-
     @classmethod
     def find_by_id(cls, catalog_id):
         return cls.query.filter_by(id=catalog_id).first()

@@ -23,14 +23,6 @@ class Item(Base):
         self.catalog_id = catalog_id
         self.user_id = user_id
 
-    @property
-    def serialize(self):
-        return {
-           'id': self.id,
-           'name': self.name,
-           'description': self.description
-        }
-
     @classmethod
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
