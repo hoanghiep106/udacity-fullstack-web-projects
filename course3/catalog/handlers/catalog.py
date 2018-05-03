@@ -3,6 +3,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, flash
 from flask import session as login_session
 from models.catalog import Catalog
+from models.item import Item
 
 from utils.auth import auth_required
 
@@ -77,6 +78,9 @@ def delete_catalog(id):
     if request.method == 'GET':
         return render_template('catalog/catalog-delete.html', catalog=catalog)
     else:
+        items = Item.find_by_catalog_id(id)
+        for item in items:
+            item.delete_from_db()
         catalog.delete_from_db()
         flash('Catalog is successfully deleted')
         return redirect(url_for('show_catalogs'))

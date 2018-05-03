@@ -99,7 +99,6 @@ def gconnect():
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
-    print(access_token)
     if access_token is None:
         return redirect(url_for('show_catalogs'))
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
