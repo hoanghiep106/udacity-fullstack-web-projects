@@ -1,0 +1,22 @@
+body {
+  color: $text-color;
+  font-family: 'Open Sans', sans-serif;
+  font-size: .8rem;
+}
+
+.cb {
+  clear: both;
+}
+
+button:focus,
+span:focus,
+input:focus,
+:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+a,
+.pointer {
+  cursor: pointer;
+}

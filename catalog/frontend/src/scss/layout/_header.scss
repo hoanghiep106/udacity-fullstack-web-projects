@@ -1,0 +1,27 @@
+.navbar {
+  border-bottom: 1px $gray2 solid;
+}
+
+.navbar-collapse {
+  .nav-item {
+    img,
+    .nav-link {
+      display: inline;
+    }
+  }
+
+  .nav-item img {
+    margin-top: -5px;
+    margin-right: 3px;
+  }
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  border: 1.5px $gray2 solid;
+  font-size: .9rem;
+
+  .dropdown-item.logout {
+    color: #717171;
+  }
+}
