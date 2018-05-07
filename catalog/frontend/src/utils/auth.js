@@ -1,20 +1,21 @@
-import { getJson } from 'utils/json';
-
-class UserInfo {
+class Auth {
   constructor() {
     this.listeners = [];
-    const infoString = localStorage.getItem('user');
-    this.info = infoString ? getJson(infoString) : {};
+    this.accessToken = localStorage.getItem('accessToken');
   }
 
-  setInfo(data) {
-    this.info = data;
-    localStorage.setItem('user', JSON.stringify(data));
+  isAuth() {
+    return !!this.getAccessToken();
+  }
+
+  setAccessToken(accessToken) {
+    this.accessToken = accessToken;
+    localStorage.setItem('accessToken', accessToken);
     this.listeners.forEach(listener => listener());
   }
 
-  getInfo() {
-    return this.info;
+  getAccessToken() {
+    return this.accessToken;
   }
 
   addListener(listener) {
@@ -30,4 +31,4 @@ class UserInfo {
   }
 }
 
-export default new UserInfo();
+export default new Auth();

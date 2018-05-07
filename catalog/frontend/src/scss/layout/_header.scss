@@ -1,27 +1,88 @@
+.collapse:not(.show) {
+  display: flex !important;
+}
+
+a:not([href]):not([tabindex]) {
+  color: $gray1;
+}
+
 .navbar {
   border-bottom: 1px $gray2 solid;
 }
 
-.navbar-collapse {
-  .nav-item {
-    img,
-    .nav-link {
-      display: inline;
-    }
-  }
+.btn-google {
+  background-color: $white;
+  border: none;
+  width: 100px;
+  cursor: pointer;
+  color: $gray1;
+}
 
-  .nav-item img {
-    margin-top: -5px;
-    margin-right: 3px;
+.btn-google:hover {
+  color: $gray0;
+}
+
+.nav-link.dropdown-toggle {
+  padding-top: .8rem;
+  font-size: .9rem;
+  color: $gray1;
+}
+
+.navbar-left a {
+  margin-left: .5rem;
+  padding-bottom: .2rem;
+  color: $gray1;
+  font-size: 1rem;
+}
+
+.navbar-left a.active,
+.navbar-left a:hover {
+  border-bottom: 2px $blue1 solid;
+  text-decoration: none;
+}
+
+.dropdown-toggle::after {
+  vertical-align: .1em;
+  margin-left: .5rem;
+  border-top: .4em solid;
+}
+
+.nav-item {
+  img,
+  .nav-link {
+    display: inline;
   }
 }
 
+.nav-item.dropdown img {
+  border-radius: 50%;
+}
+
+.nav-item {
+  position: relative;
+}
+
 .dropdown-menu {
+  position: absolute !important;
+  left: auto;
+  right: 0;
   border-radius: 0;
   border: 1.5px $gray2 solid;
   font-size: .9rem;
 
-  .dropdown-item.logout {
-    color: #717171;
+  .dropdown-item:hover {
+    background-color: $gray2;
   }
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: $gray2;
+}
+
+.navbar-toggler {
+  padding: .25rem .75rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  border: 2px solid $gray2;
+  border-radius: 0;
 }

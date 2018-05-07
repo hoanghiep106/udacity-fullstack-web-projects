@@ -1,20 +1,54 @@
 import React, { Component } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
+import AuthenticationService from 'services/Authentication';
+import auth from 'utils/auth';
+import userInfo from 'utils/userInfo';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
+      isAuth: auth.isAuth(),
+      userInfo: userInfo.getInfo(),
+      dropdownOpen: false,
     };
   }
 
-  handleLogin = (res) => {
-    console.log(res);
+  componentDidMount() {
+    window.document.addEventListener('click', e => this.hideDropDown(e));
+    this.removeAuthListener = auth.addListener(() => {
+      this.setState({ isAuth: auth.isAuth(), dropdownOpen: false });
+    });
+    this.removeUserInfoListener = userInfo.addListener(() => {
+      this.setState({ userInfo: userInfo.getInfo() });
+    });
   }
 
-  handleLogout = (res) => {
-    console.log(res);
+  componentWillUnmount() {
+    this.removeAuthListener();
+    this.removeUserInfoListener();
+    window.document.removeEventListener('click', e => this.hideDropDown(e));
+  }
+
+  toggleDropDown() { this.setState({ dropdownOpen: !this.state.dropdownOpen }); }
+
+  hideDropDown(e) {
+    if (this.dropDownToggleRef && !this.dropDownToggleRef.contains(e.target)) {
+      this.setState({ dropdownOpen: false });
+    }
+  }
+
+  handleLogin = (data) => {
+    AuthenticationService.login(data).then((res) => {
+      if (res.data && res.data.user && res.data.access_token) {
+        userInfo.setInfo(res.data.user);
+        auth.setAccessToken(res.data.access_token);
+      }
+    });
+  }
+
+  handleLogout = () => {
+    AuthenticationService.logout();
   }
 
   render() {
@@ -24,26 +58,41 @@ class Header extends Component {
           <a className="navbar-brand">
             <h2>Catalog</h2>
           </a>
-        </div>
-        <div className="collapse navbar-collapse">
           <ul className="navbar-nav navbar-right ml-auto">
-            {!this.state.isLoggedIn ?
+          {!this.state.isAuth ?
+            <li className="nav-item">
               <GoogleLogin
-                clientId="819305314472-l8pgmpri6tg3c5g2nmda33cu738k98e2.apps.googleusercontent.com"
+                clientId="890058489988-pe58hoh8jmnm8ah7d149v6girbpet6g2.apps.googleusercontent.com"
                 onSuccess={this.handleLogin}
                 onFailure={this.handleLogin}
-                accessType="offline"
                 responseType="code"
+                className="btn-google"
               >
-                <i className="fa fa-google fa-lg" /> |
-                <span> Login with Google</span>
+                <i className="fa fa-google fa-lg d-inline" /> | Login
               </GoogleLogin>
-              :
-              <GoogleLogout
-                buttonText="Logout"
-                onLogoutSuccess={this.handleLogout}
-              />
-            }
+            </li>
+            :
+            <React.Fragment>
+              <li className="nav-item dropdown">
+                <img
+                  className="profile--image"
+                  src={this.state.userInfo.picture || 'img/default_profile_image.svg'}
+                  width="35px"
+                  alt="Profile"
+                />
+                <a
+                  ref={ref => this.dropDownToggleRef = ref}
+                  className="nav-link dropdown-toggle"
+                  onClick={() => this.toggleDropDown()}
+                >
+                  {this.state.userInfo.name}
+                </a>
+                <div className={`dropdown-menu ${this.state.dropdownOpen ? 'show' : ''}`}>
+                  <a className="dropdown-item logout" onClick={this.handleLogout}>Log out</a>
+                </div>
+              </li>
+            </React.Fragment>
+          }
           </ul>
         </div>
       </nav>

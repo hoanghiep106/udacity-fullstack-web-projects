@@ -1,25 +1,19 @@
 import axios from 'axios';
-import { authenticationUrls, getHeaders } from 'config/api';
-import errorHandler from 'utils/error';
+import { authenticationUrls } from 'config/api';
+import auth from 'utils/auth';
+import userInfo from 'utils/userInfo';
 
 const AuthenticationService = {
-  signUpLinkedIn(data) {
+  login(data) {
     return axios({
       method: 'post',
-      headers: getHeaders(),
-      url: authenticationUrls.signUpLinkedIn,
+      url: authenticationUrls.login,
       data,
-    }).then(res => res)
-      .catch(err => errorHandler(err));
+    });
   },
-  loginLinkedIn(data) {
-    return axios({
-      method: 'post',
-      headers: getHeaders(),
-      url: authenticationUrls.loginLinkedIn,
-      data,
-    }).then(res => res)
-      .catch(err => errorHandler(err));
+  logout() {
+    auth.setAccessToken('');
+    userInfo.setInfo({});
   },
 };
 

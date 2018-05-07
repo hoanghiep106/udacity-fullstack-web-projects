@@ -20,3 +20,13 @@ a,
 .pointer {
   cursor: pointer;
 }
+
+.btn-group-sm>.btn, .btn-sm {
+  padding: .1rem .6rem 0.2rem;
+  font-size: .8rem;
+  line-height: 1;
+}
+
+.card-footer {
+  padding: .5rem 1.25rem;
+}

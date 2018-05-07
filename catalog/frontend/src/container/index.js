@@ -3,45 +3,20 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import history from 'utils/history';
 // App shell
 import Header from 'components/Header';
-import LoadingIndicator from 'components/LoadingIndicator';
 // Pages
-import Catalog from 'pages/Catalog';
+import Catalogs from 'pages/Catalogs';
 
 
-class Container extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFetchingInfo: false,
-    };
-  }
-
-  renderRoutes() {
-    return (
+const Container = () => (
+  <Router history={history}>
+    <div>
+      <Header />
       <Switch>
-        <Route path="/catalogs" name="Catalog" component={Catalog} />
+        <Route path="/catalogs" name="Catalogs" component={Catalogs} />
         <Redirect from="/" to="/catalogs" />
       </Switch>
-    );
-  }
-
-  render() {
-    if (this.state.isFetchingInfo) {
-      return (
-        <div className="loading-page">
-          <LoadingIndicator />
-        </div>
-      );
-    }
-    return (
-      <Router history={history}>
-        <div>
-          <Header />
-          {this.renderRoutes()}
-        </div>
-      </Router>
-    );
-  }
-}
+    </div>
+  </Router>
+);
 
 export default Container;

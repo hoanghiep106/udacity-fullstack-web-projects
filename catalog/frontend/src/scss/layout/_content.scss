@@ -1,0 +1,19 @@
+.btn-close {
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  text-align: center;
+  background-color: $white;
+  border-radius: 50%;
+  right: .5rem;
+  top: .7rem;
+  cursor: pointer;
+}
+
+.btn-close:hover {
+  background-color: $gray3;
+}
+
+.card-catalog {
+  height: 150px;
+}
