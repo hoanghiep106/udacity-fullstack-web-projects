@@ -1,7 +1,7 @@
 # Catalog project.
 
 ### Prerequisite
-- Python3
+- Python2
 
 https://www.python.org/downloads/
 
@@ -14,7 +14,7 @@ pip install virtualenv
 
 - Create a virtual environment inside the project
 ```
-virtualenv -p python3 venv
+virtualenv --python=python2.7 venv
 ```
 
 - Start the virtual environment
