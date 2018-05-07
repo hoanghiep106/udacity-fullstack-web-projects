@@ -15,7 +15,22 @@ const CatalogService = {
       headers: getHeaders(),
       data: catalog,
     });
-  }
+  },
+  updateCatalog(id, catalog) {
+    return axios({
+      method: 'put',
+      url: catalogUrls.catalogById(id),
+      headers: getHeaders(),
+      data: catalog,
+    });
+  },
+  deleteCatalog(id) {
+    return axios({
+      method: 'delete',
+      url: catalogUrls.catalogById(id),
+      headers: getHeaders(),
+    });
+  },
 };
 
 export default CatalogService;

@@ -19,5 +19,4 @@ def auth_required(func):
                     print user.id
         kwargs['user'] = user
         return func(*args, **kwargs)
-
     return auth_function

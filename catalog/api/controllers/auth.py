@@ -14,7 +14,6 @@ def login():
     if 'code' not in data:
         return jsonify({'message': 'No code found'}), 400
     code = data['code']
-    # Exchange 1 time code with access token
     try:
         oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
@@ -22,7 +21,6 @@ def login():
     except FlowExchangeError:
         return jsonify({'message': 'Failed to upgrade the authorization code.'}), 401
     access_token = credentials.access_token
-    # Get user info
     user_info_url = 'https://www.googleapis.com/oauth2/v1/userinfo'
     params = {'access_token': access_token, 'alt': 'json'}
     result = requests.get(user_info_url, params=params)

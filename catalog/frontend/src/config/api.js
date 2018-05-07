@@ -15,3 +15,8 @@ export const catalogUrls = {
   catalogs: `${baseUrl}/catalogs`,
   catalogById: (id) => `${baseUrl}/catalogs/${id}`,
 };
+
+export const itemUrls = {
+  itemsByCatalogId: (catalogId) => `${baseUrl}/catalogs/${catalogId}/items`,
+  itemById: (id) => `${baseUrl}/items/${id}`,
+};
