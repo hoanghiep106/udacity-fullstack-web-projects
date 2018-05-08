@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import history from 'utils/history';
 import { GoogleLogin } from 'react-google-login';
 import AuthenticationService from 'services/Authentication';
 import auth from 'utils/auth';
@@ -55,7 +56,7 @@ class Header extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light global-header">
         <div className="container">
-          <a className="navbar-brand">
+          <a className="navbar-brand" onClick={() => history.push('/catalogs')}>
             <h2>Catalog</h2>
           </a>
           <ul className="navbar-nav navbar-right ml-auto">
