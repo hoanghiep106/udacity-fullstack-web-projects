@@ -14,6 +14,15 @@
   background-color: $gray3;
 }
 
-.card-catalog {
+.card-catalog,
+.card-item {
   height: 150px;
+}
+
+.card-catalog .card-body {
+  cursor: pointer;
+}
+
+.card-catalog .card-body:hover {
+  background-color: $gray3;
 }

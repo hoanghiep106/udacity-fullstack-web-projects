@@ -59,40 +59,41 @@ class Header extends Component {
             <h2>Catalog</h2>
           </a>
           <ul className="navbar-nav navbar-right ml-auto">
-          {!this.state.isAuth ?
-            <li className="nav-item">
-              <GoogleLogin
-                clientId="890058489988-pe58hoh8jmnm8ah7d149v6girbpet6g2.apps.googleusercontent.com"
-                onSuccess={this.handleLogin}
-                onFailure={this.handleLogin}
-                responseType="code"
-                className="btn-google"
-              >
-                <i className="fa fa-google fa-lg d-inline" /> | Login
-              </GoogleLogin>
-            </li>
-            :
-            <React.Fragment>
-              <li className="nav-item dropdown">
-                <img
-                  className="profile--image"
-                  src={this.state.userInfo.picture || 'img/default_profile_image.svg'}
-                  width="35px"
-                  alt="Profile"
-                />
-                <a
-                  ref={ref => this.dropDownToggleRef = ref}
-                  className="nav-link dropdown-toggle"
-                  onClick={() => this.toggleDropDown()}
+            {!this.state.isAuth ?
+              <li className="nav-item">
+                <GoogleLogin
+                  clientId="890058489988-pe58hoh8jmnm8ah7d149v6girbpet6g2.apps.googleusercontent.com"
+                  onSuccess={this.handleLogin}
+                  onFailure={this.handleLogin}
+                  responseType="code"
+                  className="btn-google"
                 >
-                  {this.state.userInfo.name}
-                </a>
-                <div className={`dropdown-menu ${this.state.dropdownOpen ? 'show' : ''}`}>
-                  <a className="dropdown-item logout" onClick={this.handleLogout}>Log out</a>
-                </div>
+                  <i className="fa fa-google fa-lg d-inline" /> | Login
+                </GoogleLogin>
               </li>
-            </React.Fragment>
-          }
+              :
+              <React.Fragment>
+                <li className="nav-item dropdown">
+                  <img
+                    className="profile--image"
+                    src={this.state.userInfo.picture || 'img/default_profile_image.svg'}
+                    width="35px"
+                    height="35px"
+                    alt="Profile"
+                  />
+                  <a
+                    ref={ref => this.dropDownToggleRef = ref}
+                    className="nav-link dropdown-toggle"
+                    onClick={() => this.toggleDropDown()}
+                  >
+                    {this.state.userInfo.name}
+                  </a>
+                  <div className={`dropdown-menu ${this.state.dropdownOpen ? 'show' : ''}`}>
+                    <a className="dropdown-item logout" onClick={this.handleLogout}>Log out</a>
+                  </div>
+                </li>
+              </React.Fragment>
+            }
           </ul>
         </div>
       </nav>

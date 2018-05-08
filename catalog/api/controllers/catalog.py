@@ -32,6 +32,16 @@ def new_catalogs(user):
     }), 200
 
 
+@catalog_bp.route('/catalogs/<string:id>', methods=['GET'])
+def get_catalog(id):
+    catalog = Catalog.find_by_id(id)
+    if not catalog:
+        return jsonify({'message': 'Catalog not found'}), 404
+    return jsonify({
+        'catalog': catalog.serializer
+    }), 200
+
+
 @catalog_bp.route('/catalogs/<string:id>', methods=['PUT'])
 @auth_required
 def edit_catalog(user, id):

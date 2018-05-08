@@ -5,6 +5,7 @@ import history from 'utils/history';
 import Header from 'components/Header';
 // Pages
 import Catalogs from 'pages/Catalogs';
+import Items from 'pages/Items';
 
 
 const Container = () => (
@@ -12,6 +13,7 @@ const Container = () => (
     <div>
       <Header />
       <Switch>
+        <Route path="/catalogs/:id" name="Catalog items" component={Items} />
         <Route path="/catalogs" name="Catalogs" component={Catalogs} />
         <Redirect from="/" to="/catalogs" />
       </Switch>

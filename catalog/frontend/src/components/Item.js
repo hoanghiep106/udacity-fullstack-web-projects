@@ -1,13 +1,12 @@
 import React from 'react';
 import auth from 'utils/auth';
 import userInfo from 'utils/userInfo';
-import history from 'utils/history';
 import { shortenString } from 'utils/string';
-import CatalogService from 'services/Catalog';
+import ItemService from 'services/Item';
 import ConfirmDelete from 'components/ConfirmDelete';
-import CatalogForm from 'components/CatalogForm';
+import ItemForm from 'components/ItemForm';
 
-class Catalog extends React.Component {
+class Item extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,28 +39,25 @@ class Catalog extends React.Component {
     this.setState({ [modal]: false });
   }
 
-  deleteCatalog = () => {
-    CatalogService.deleteCatalog(this.props.id).then(() => {
+  deleteItem = () => {
+    ItemService.deleteItem(this.props.id).then(() => {
       this.closeModal('confirmModal');
-      this.props.fetchCatalogs();
+      this.props.fetchItems();
     });
   }
 
-  editCatalog = (catalog) => {
-    CatalogService.updateCatalog(this.props.id, catalog).then(() => {
+  editItem = (item) => {
+    ItemService.updateItem(this.props.id, item).then(() => {
       this.closeModal('editModal');
-      this.props.fetchCatalogs();
+      this.props.fetchItems();
     });
   }
 
   render() {
     return (
       <div className="col-md-4 mb-3">
-        <div className="card card-catalog">
-          <div
-            className="card-body"
-            onClick={() => history.push(`/catalogs/${this.props.id}`)}
-          >
+        <div className="card card-item">
+          <div className="card-body">
             <h4>{this.props.name}</h4>
             <p>{shortenString(this.props.description)}</p>
           </div>
@@ -85,15 +81,15 @@ class Catalog extends React.Component {
         <ConfirmDelete
           isOpen={this.state.confirmModal}
           closeModal={() => this.closeModal('confirmModal')}
-          delete={this.deleteCatalog}
+          delete={this.deleteItem}
         />
         {this.state.editModal &&
-          <CatalogForm
+          <ItemForm
             isOpen={this.state.editModal}
             closeModal={() => this.closeModal('editModal')}
-            action={this.editCatalog}
-            catalog={this.props}
-            title="Edit catalog"
+            action={this.editItem}
+            item={this.props}
+            title="Edit item"
           />
         }
       </div>
@@ -101,4 +97,4 @@ class Catalog extends React.Component {
   }
 }
 
-export default Catalog;
+export default Item;

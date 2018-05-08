@@ -1,4 +1,4 @@
-# Catalog project.
+# Catalog API.
 
 ### Prerequisite
 - Python2
@@ -10,7 +10,7 @@ https://www.python.org/downloads/
 pip install virtualenv
 ```
 
-### Install the project
+### Setting up
 
 - Create a virtual environment inside the project
 ```

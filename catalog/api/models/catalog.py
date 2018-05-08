@@ -28,8 +28,8 @@ class Catalog(Base):
         }
 
     @classmethod
-    def find_by_id(cls, catalog_id):
-        return cls.query.filter_by(id=catalog_id).first()
+    def find_by_id(cls, id):
+        return cls.query.filter_by(id=id).first()
     
     @classmethod
     def find_all(cls):

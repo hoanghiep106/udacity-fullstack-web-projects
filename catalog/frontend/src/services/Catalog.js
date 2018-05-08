@@ -8,6 +8,12 @@ const CatalogService = {
       url: catalogUrls.catalogs,
     });
   },
+  getCatalog(id) {
+    return axios({
+      method: 'get',
+      url: catalogUrls.catalogById(id),
+    });
+  },
   createCatalog(catalog) {
     return axios({
       method: 'post',

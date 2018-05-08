@@ -3,41 +3,41 @@ import { modalStyles } from 'config/app';
 import Modal from 'components/Modal';
 
 
-class CatalogForm extends React.Component {
+class ItemForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      catalog: this.props.catalog || {},
+      item: this.props.item || {},
       error: {},
     };
   }
 
   handleChange = (e) => {
-    const catalog = { ...this.state.catalog };
-    catalog[e.target.name] = e.target.value.trim();
-    this.setState({ catalog });
+    const item = { ...this.state.item };
+    item[e.target.name] = e.target.value.trim();
+    this.setState({ item });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.validate()) {
-      this.props.action(this.state.catalog);
+      this.props.action(this.state.item);
     }
   }
 
   validate() {
     const error = { ...this.state.error };
     let errorCount = 0;
-    if (!this.state.catalog.name) {
+    if (!this.state.item.name) {
       error.name = 'Required';
       errorCount += 1;
-    } else if (this.state.catalog.name.length > 50) {
+    } else if (this.state.item.name.length > 50) {
       error.name = 'Over 50 characters';
       errorCount += 1;
     } else {
       error.name = '';
     }
-    if (this.state.catalog.description && this.state.catalog.description.length > 120) {
+    if (this.state.item.description && this.state.item.description.length > 120) {
       error.description = 'Over 120 characters';
       errorCount += 1;
     } else {
@@ -81,7 +81,7 @@ class CatalogForm extends React.Component {
                   className="form-control"
                   type="text"
                   name="name"
-                  defaultValue={this.state.catalog.name || ''}
+                  defaultValue={this.state.item.name || ''}
                   onChange={this.handleChange}
                 />
               </div>
@@ -99,7 +99,7 @@ class CatalogForm extends React.Component {
                   className="form-control"
                   type="text"
                   name="description"
-                  defaultValue={this.state.catalog.description || ''}
+                  defaultValue={this.state.item.description || ''}
                   onChange={this.handleChange}
                 />
               </div>
@@ -126,4 +126,4 @@ class CatalogForm extends React.Component {
   }
 }
 
-export default CatalogForm;
+export default ItemForm;

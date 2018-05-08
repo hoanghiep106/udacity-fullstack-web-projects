@@ -3,7 +3,7 @@ import { modalStyles } from 'config/app';
 import Modal from 'components/Modal';
 
 
-const ConfirmDelete = (props) => (
+const ConfirmDelete = props => (
   <Modal
     isOpen={props.isOpen}
     onRequestClose={props.closeModal}
@@ -20,7 +20,7 @@ const ConfirmDelete = (props) => (
         </div>
       </div>
       <div className="card-body">
-        
+        Are you sure you want to delete this?
       </div>
       <div className="card-footer text-right">
         <button

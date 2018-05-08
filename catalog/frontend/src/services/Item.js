@@ -30,7 +30,7 @@ const ItemService = {
       url: itemUrls.itemById(id),
       headers: getHeaders(),
     });
-  }
+  },
 };
 
-export default CatalogService;
+export default ItemService;

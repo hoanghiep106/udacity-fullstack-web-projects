@@ -21,6 +21,11 @@ a,
   cursor: pointer;
 }
 
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
+  text-decoration: underline;
+}
+
 .btn-group-sm>.btn, .btn-sm {
   padding: .1rem .6rem 0.2rem;
   font-size: .8rem;
