@@ -2,10 +2,6 @@
   display: flex !important;
 }
 
-a:not([href]):not([tabindex]) {
-  color: $gray1;
-}
-
 .navbar {
   border-bottom: 1px $gray2 solid;
 }
@@ -35,6 +31,10 @@ a:not([href]):not([tabindex]) {
   font-size: 1rem;
 }
 
+a:not([href]):not([tabindex]) {
+  color: $gray1;
+}
+
 .navbar-left a.active,
 .navbar-left a:hover {
   border-bottom: 2px $blue1 solid;
@@ -48,6 +48,8 @@ a:not([href]):not([tabindex]) {
 }
 
 .nav-item {
+  position: relative;
+
   img,
   .nav-link {
     display: inline;
@@ -58,10 +60,6 @@ a:not([href]):not([tabindex]) {
   border-radius: 50%;
 }
 
-.nav-item {
-  position: relative;
-}
-
 .dropdown-menu {
   position: absolute !important;
   left: auto;
@@ -70,13 +68,14 @@ a:not([href]):not([tabindex]) {
   border: 1.5px $gray2 solid;
   font-size: .9rem;
 
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background-color: $gray2;
+  }
+
   .dropdown-item:hover {
     background-color: $gray2;
   }
-}
-
-.dropdown-item.active, .dropdown-item:active {
-  background-color: $gray2;
 }
 
 .navbar-toggler {
