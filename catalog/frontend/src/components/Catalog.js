@@ -62,8 +62,8 @@ class Catalog extends React.Component {
             className="card-body"
             onClick={() => history.push(`/catalogs/${this.props.id}`)}
           >
-            <h4>{this.props.name}</h4>
-            <p>{shortenString(this.props.description)}</p>
+            <h4>{shortenString(this.props.name, 15)}</h4>
+            <p>{shortenString(this.props.description, 50)}</p>
           </div>
           {this.state.isAuth && this.state.userInfo.id === this.props.user_id &&
           <div className="card-footer text-right">

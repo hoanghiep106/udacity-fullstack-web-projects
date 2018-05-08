@@ -1,6 +1,6 @@
-export function shortenString(string) {
+export function shortenString(string, length) {
   if (string) {
-    return string.length > 50 ? `${string.slice(0, 50)}...` : string;
+    return string.length > length ? `${string.slice(0, length)}...` : string;
   }
   return '';
 }

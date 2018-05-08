@@ -1,3 +1,4 @@
+import bleach
 from flask import Blueprint, request, jsonify
 
 from utils.auth import auth_required
@@ -30,7 +31,11 @@ def new_items(user, catalog_id):
         return jsonify({'message': 'No item name'}), 400
     if 'description' not in data:
         data['description'] = None
-    item = Item(data['name'], data['description'], catalog_id, user.id)
+    name = data['name'].strip()
+    description = data['description'].strip()
+    if not name or len(name) > 50 or len(description) > 120:
+        return jsonify({'message': 'Bad request'}), 400
+    item = Item(bleach.clean(name), bleach.clean(description), catalog_id, user.id)
     item.save_to_db()
     return jsonify({
         'message': 'Item created',
@@ -50,9 +55,15 @@ def edit_item(user, id):
         return jsonify({'message': 'No permission'}), 403
     data = request.json
     if 'name' in data:
-        item.name = data['name']
+        name = data['name'].strip()
+        if not name or len(name) > 50:
+            return jsonify({'message': 'Bad request'}), 400
+        item.name = bleach.clean(name)
     if 'description' in data:
-        item.description = data['description']
+        description = data['description'].strip()
+        if len(description) > 120:
+            return jsonify({'message': 'Bad request'}), 400
+        item.description = bleach.clean(description)
     item.save_to_db()
     return jsonify({
         'message': 'Item edited',

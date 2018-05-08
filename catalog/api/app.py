@@ -8,8 +8,7 @@ from controllers.catalog import catalog_bp
 from controllers.item import item_bp
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = config.DB_URL
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object('config.Config')
 app.secret_key = config.APP_SECRET
 
 app.register_blueprint(auth_bp)
