@@ -19,6 +19,7 @@ app.register_blueprint(item_bp)
 cors = CORS(send_wildcard=True)
 cors.init_app(app)
 
+
 if __name__ == '__main__':
     from db import db
     db.init_app(app)

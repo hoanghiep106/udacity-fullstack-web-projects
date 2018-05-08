@@ -8,7 +8,7 @@ from models.item import Item
 item_bp = Blueprint('item_bp', __name__)
 
 
-@item_bp.route('/catalogs/<string:catalog_id>/items', methods=['GET'])
+@item_bp.route('/catalogs/<int:catalog_id>/items', methods=['GET'])
 def get_items(catalog_id):
     catalog = Catalog.find_by_id(catalog_id)
     if not catalog:
@@ -17,7 +17,7 @@ def get_items(catalog_id):
     return jsonify({'items': [item.serializer for item in items]}), 200
 
 
-@item_bp.route('/catalogs/<string:catalog_id>/items', methods=['POST'])
+@item_bp.route('/catalogs/<int:catalog_id>/items', methods=['POST'])
 @auth_required
 def new_items(user, catalog_id):
     if not user:
@@ -38,7 +38,7 @@ def new_items(user, catalog_id):
     }), 200
 
 
-@item_bp.route('/items/<string:id>', methods=['PUT'])
+@item_bp.route('/items/<int:id>', methods=['PUT'])
 @auth_required
 def edit_item(user, id):
     if not user:
@@ -60,7 +60,7 @@ def edit_item(user, id):
     }), 200
 
 
-@item_bp.route('/items/<string:id>', methods=['DELETE'])
+@item_bp.route('/items/<int:id>', methods=['DELETE'])
 @auth_required
 def delete_item(user, id):
     if not user:
@@ -72,5 +72,5 @@ def delete_item(user, id):
         return jsonify({'message': 'No permission'}), 403
     item.delete_from_db()
     return jsonify({
-        'message': 'Catalog deleted'
+        'message': 'Item deleted'
     }), 200

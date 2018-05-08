@@ -13,10 +13,8 @@ def auth_required(func):
             authorization = request.headers['Authorization']
             if authorization.startswith('Bearer '):
                 token = jwttoken.decode(authorization[len('Bearer '):])
-                print token
                 if token:
                     user = User.find_by_id(token['sub'])
-                    print user.id
         kwargs['user'] = user
         return func(*args, **kwargs)
     return auth_function

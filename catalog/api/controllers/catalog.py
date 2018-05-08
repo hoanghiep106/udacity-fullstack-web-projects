@@ -15,7 +15,7 @@ def get_catalogs():
 
 @catalog_bp.route('/catalogs', methods=['POST'])
 @auth_required
-def new_catalogs(user):
+def new_catalog(user):
     if not user:
         return jsonify({'message': 'Unauthorized'}), 401
     data = request.json
@@ -23,7 +23,6 @@ def new_catalogs(user):
         return jsonify({'message': 'No catalog name'}), 400
     if 'description' not in data:
         data['description'] = None
-    print user.id
     catalog = Catalog(data['name'], data['description'], user.id)
     catalog.save_to_db()
     return jsonify({
@@ -32,7 +31,7 @@ def new_catalogs(user):
     }), 200
 
 
-@catalog_bp.route('/catalogs/<string:id>', methods=['GET'])
+@catalog_bp.route('/catalogs/<int:id>', methods=['GET'])
 def get_catalog(id):
     catalog = Catalog.find_by_id(id)
     if not catalog:
@@ -42,7 +41,7 @@ def get_catalog(id):
     }), 200
 
 
-@catalog_bp.route('/catalogs/<string:id>', methods=['PUT'])
+@catalog_bp.route('/catalogs/<int:id>', methods=['PUT'])
 @auth_required
 def edit_catalog(user, id):
     if not user:
@@ -64,7 +63,7 @@ def edit_catalog(user, id):
     }), 200
 
 
-@catalog_bp.route('/catalogs/<string:id>', methods=['DELETE'])
+@catalog_bp.route('/catalogs/<int:id>', methods=['DELETE'])
 @auth_required
 def delete_catalog(user, id):
     if not user:
