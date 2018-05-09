@@ -33,3 +33,6 @@ class User(Base):
     def find_by_email(cls, email):
         user = cls.query.filter_by(email=email).first()
         return user
+
+
+user_email_index = db.Index('user_email_index', User.email)

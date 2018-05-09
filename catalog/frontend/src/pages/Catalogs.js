@@ -74,12 +74,14 @@ class Catalogs extends React.Component {
             )
           }
         </div>
-        <CatalogForm
-          isOpen={this.state.modalOpen}
-          closeModal={this.closeModal}
-          action={this.createCatalog}
-          title="Create catalog"
-        />
+        {this.state.modalOpen &&
+          <CatalogForm
+            isOpen={this.state.modalOpen}
+            closeModal={this.closeModal}
+            action={this.createCatalog}
+            title="Create catalog"
+          />
+        }
       </div>
     );
   }

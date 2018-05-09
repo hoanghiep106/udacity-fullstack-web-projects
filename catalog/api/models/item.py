@@ -1,5 +1,3 @@
-from sqlalchemy import Index
-
 from db import db
 from models.base import Base
 from models.user import User
@@ -43,4 +41,4 @@ class Item(Base):
         return cls.query.filter_by(catalog_id=catalog_id).all()
 
 
-item_catalog_id_index = Index('item_catalog_id_index', Item.catalog_id)
+item_catalog_id_index = db.Index('item_catalog_id_index', Item.catalog_id)

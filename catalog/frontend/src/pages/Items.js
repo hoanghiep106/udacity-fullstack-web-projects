@@ -92,12 +92,14 @@ class Items extends React.Component {
             />
           }
         </div>
+        {this.state.modalOpen &&
         <ItemForm
           isOpen={this.state.modalOpen}
           closeModal={this.closeModal}
           action={this.createItem}
           title="Create item"
         />
+        }
       </div>
     );
   }

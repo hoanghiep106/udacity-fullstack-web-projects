@@ -27,10 +27,10 @@ def new_items(user, catalog_id):
     if not catalog:
         return jsonify({'message': 'Catalog not found'}), 404
     data = request.json
-    if 'name' not in data:
+    if 'name' not in data or not data['name']:
         return jsonify({'message': 'No item name'}), 400
-    if 'description' not in data:
-        data['description'] = None
+    if 'description' not in data or not data['description']:
+        data['description'] = ''
     name = data['name'].strip()
     description = data['description'].strip()
     if not name or len(name) > 50 or len(description) > 120:
@@ -54,12 +54,12 @@ def edit_item(user, id):
     if user.id != item.user_id:
         return jsonify({'message': 'No permission'}), 403
     data = request.json
-    if 'name' in data:
+    if 'name' in data and data['name']:
         name = data['name'].strip()
         if not name or len(name) > 50:
             return jsonify({'message': 'Bad request'}), 400
         item.name = bleach.clean(name)
-    if 'description' in data:
+    if 'description' in data and data['description']:
         description = data['description'].strip()
         if len(description) > 120:
             return jsonify({'message': 'Bad request'}), 400

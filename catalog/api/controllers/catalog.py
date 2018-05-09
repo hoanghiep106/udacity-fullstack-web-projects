@@ -21,13 +21,13 @@ def new_catalog(user):
     if not user:
         return jsonify({'message': 'Unauthorized'}), 401
     data = request.json
-    if 'name' not in data:
+    if 'name' not in data or not data['name']:
         return jsonify({'message': 'No catalog name'}), 400
-    if 'description' not in data:
-        data['description'] = None
+    if 'description' not in data or not data['description']:
+        data['description'] = ''
     name = data['name'].strip()
     description = data['description'].strip()
-    if not name or len(name) > 50 or len(description) > 120:
+    if len(name) > 50 or len(description) > 120:
         return jsonify({'message': 'Bad request'}), 400
     catalog = Catalog(bleach.clean(name), bleach.clean(description), user.id)
     catalog.save_to_db()
@@ -58,12 +58,12 @@ def edit_catalog(user, id):
     if user.id != catalog.user_id:
         return jsonify({'message': 'No permission'}), 403
     data = request.json
-    if 'name' in data:
+    if 'name' in data and data['name']:
         name = data['name'].strip()
         if not name or len(name) > 50:
             return jsonify({'message': 'Bad request'}), 400
         catalog.name = bleach.clean(name)
-    if 'description' in data:
+    if 'description' in data and data['description']:
         description = data['description'].strip()
         if len(description) > 120:
             return jsonify({'message': 'Bad request'}), 400
