@@ -63,11 +63,15 @@ class Catalogs extends React.Component {
         </div>
         }
         <div>
-          {catalogs && catalogs.length > 0 &&
-            <CatalogList
-              catalogs={this.state.catalogs}
-              fetchCatalogs={this.fetchCatalogs}
-            />
+          {catalogs &&
+            (catalogs.length > 0 ?
+              <CatalogList
+                catalogs={this.state.catalogs}
+                fetchCatalogs={this.fetchCatalogs}
+              />
+              :
+              <h3>No catalogs</h3>
+            )
           }
         </div>
         <CatalogForm

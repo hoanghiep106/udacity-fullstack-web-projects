@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import history from 'utils/history';
 import { GoogleLogin } from 'react-google-login';
-import AuthenticationService from 'services/Authentication';
+import { googleClientId, defaultProfileImage } from 'config/app';
+import history from 'utils/history';
 import auth from 'utils/auth';
 import userInfo from 'utils/userInfo';
+import AuthenticationService from 'services/Authentication';
 
 class Header extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class Header extends Component {
             {!this.state.isAuth ?
               <li className="nav-item">
                 <GoogleLogin
-                  clientId="890058489988-pe58hoh8jmnm8ah7d149v6girbpet6g2.apps.googleusercontent.com"
+                  clientId={googleClientId}
                   onSuccess={this.handleLogin}
                   onFailure={this.handleLogin}
                   responseType="code"
@@ -77,7 +78,7 @@ class Header extends Component {
                 <li className="nav-item dropdown">
                   <img
                     className="profile--image"
-                    src={this.state.userInfo.picture || 'img/default_profile_image.svg'}
+                    src={this.state.userInfo.picture || defaultProfileImage}
                     width="35px"
                     height="35px"
                     alt="Profile"
