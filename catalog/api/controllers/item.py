@@ -20,7 +20,7 @@ def get_items(catalog_id):
 
 @item_bp.route('/catalogs/<int:catalog_id>/items', methods=['POST'])
 @auth_required
-def new_items(user, catalog_id):
+def new_item(user, catalog_id):
     if not user:
         return jsonify({'message': 'Unauthorized'}), 401
     catalog = Catalog.find_by_id(catalog_id)
