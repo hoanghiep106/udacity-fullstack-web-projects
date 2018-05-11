@@ -19,7 +19,7 @@ def get_catalogs():
 
 @catalog_bp.route('/catalogs', methods=['POST'])
 @auth_required
-def new_catalog(user):
+def create_catalog(user):
     if not user:
         return jsonify({'message': 'Unauthorized'}), 401
     data = request.json
