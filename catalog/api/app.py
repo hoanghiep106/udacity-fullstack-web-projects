@@ -1,15 +1,12 @@
 from flask import Flask
 from flask_cors import CORS
 
-import config
-
 from controllers.auth import auth_bp
 from controllers.catalog import catalog_bp
 from controllers.item import item_bp
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-app.secret_key = config.APP_SECRET
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(catalog_bp)

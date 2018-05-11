@@ -11,7 +11,7 @@ auth_bp = Blueprint('auth_bp', __name__)
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.json
-    if 'code' not in data:
+    if 'code' not in data or not data['code']:
         return jsonify({'message': 'No code found'}), 400
     code = data['code']
     try:

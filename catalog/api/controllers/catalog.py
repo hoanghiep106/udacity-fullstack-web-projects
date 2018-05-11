@@ -3,6 +3,8 @@ from flask import Blueprint, request, jsonify
 
 from utils.auth import auth_required
 
+from constant import MAX_NAME_LENGTH, MAX_DESCRIPTION_LENGTH
+
 from models.catalog import Catalog
 from models.item import Item
 
@@ -27,7 +29,7 @@ def new_catalog(user):
         data['description'] = ''
     name = data['name'].strip()
     description = data['description'].strip()
-    if len(name) > 50 or len(description) > 120:
+    if len(name) > MAX_NAME_LENGTH or len(description) > MAX_DESCRIPTION_LENGTH:
         return jsonify({'message': 'Bad request'}), 400
     catalog = Catalog(bleach.clean(name), bleach.clean(description), user.id)
     catalog.save_to_db()
@@ -60,12 +62,12 @@ def edit_catalog(user, id):
     data = request.json
     if 'name' in data and data['name']:
         name = data['name'].strip()
-        if not name or len(name) > 50:
+        if not name or len(name) > MAX_NAME_LENGTH:
             return jsonify({'message': 'Bad request'}), 400
         catalog.name = bleach.clean(name)
     if 'description' in data and data['description']:
         description = data['description'].strip()
-        if len(description) > 120:
+        if len(description) > MAX_DESCRIPTION_LENGTH:
             return jsonify({'message': 'Bad request'}), 400
         catalog.description = bleach.clean(description)
     catalog.save_to_db()
