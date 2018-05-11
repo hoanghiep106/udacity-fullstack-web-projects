@@ -1,4 +1,3 @@
-import bleach
 from flask import Blueprint, request, jsonify
 
 from utils.auth import auth_required
@@ -31,7 +30,7 @@ def create_catalog(user):
     description = data['description'].strip()
     if len(name) > MAX_NAME_LENGTH or len(description) > MAX_DESCRIPTION_LENGTH:
         return jsonify({'message': 'Bad request'}), 400
-    catalog = Catalog(bleach.clean(name), bleach.clean(description), user.id)
+    catalog = Catalog(name, description, user.id)
     catalog.save_to_db()
     return jsonify({
         'message': 'Catalog created',
@@ -64,12 +63,12 @@ def edit_catalog(user, id):
         name = data['name'].strip()
         if not name or len(name) > MAX_NAME_LENGTH:
             return jsonify({'message': 'Bad request'}), 400
-        catalog.name = bleach.clean(name)
+        catalog.name = name
     if 'description' in data and data['description']:
         description = data['description'].strip()
         if len(description) > MAX_DESCRIPTION_LENGTH:
             return jsonify({'message': 'Bad request'}), 400
-        catalog.description = bleach.clean(description)
+        catalog.description = description
     catalog.save_to_db()
     return jsonify({
         'message': 'Catalog edited',
